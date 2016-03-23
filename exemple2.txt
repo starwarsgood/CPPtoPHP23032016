@@ -1,0 +1,76 @@
+// exemple2.cpp: определяет точку входа для консольного приложения.
+
+
+// Задание 2
+
+// Найти сумму натуральных чисел из промежутка[1; 200], у которых
+// ровно 5 делителей.Вывести на экран :
+// А) числа, у которых 5 делителей;
+// Б) делители для каждого такого числа;
+// В) сумма таких чисел.
+
+// Решение
+// Для решения используем деление по модулю
+//
+// Также будем работать с массивами в цикле
+//
+
+#include "stdafx.h"
+#include <iostream>   // для потокового ввода и вывода
+#include <math.h>     // всякие математические полезные функции
+
+
+using namespace std; // стандартное пространство имен
+
+int _tmain(int argc, _TCHAR* argv[])
+{
+	setlocale(LC_ALL, "RUS");
+	// нам понадобиться массив целых чисел
+	int ArrayMod[200];  // массив от 1 до 200 
+	for (int count = 0; count < 200; count++) //
+	
+		ArrayMod[count] = count + 1; // заполним массив числами от 1 до 200
+		
+	
+	// 
+	int sum = 0;
+	int divider = 0; 
+	int ArrayDivider[200] = { 0 }; // массив 
+	int ad = 0; // 
+	for (int i = 0; i < 200; i++)
+	{
+		ad = 0;
+		for (int j = 0; j < 200; j++) 
+		{
+		
+			if ((ArrayMod[i] % ArrayMod[j]) == 0) 
+			{
+				divider++; // введем учет кол-во делителй
+				ArrayDivider[ad] = ArrayMod[j];
+				ad++;
+			} // if ArrayMod
+		
+		}; // for j	
+		if (divider == 5)
+		{
+			sum += ArrayMod[i];
+			cout << endl;
+			cout << "Число = " << ArrayMod[i] << endl;
+			cout << "Его делители" << endl;
+			for (int r = 0; r < divider; r++)
+				cout << ArrayDivider[r]<<",";
+		
+		}
+
+
+		divider = 0; // сброс счетчика
+	} //for i
+	cout << endl;
+	cout << "======================================" << endl;
+	cout << "Сумма таких чисел = " << sum << endl;
+
+	system("pause");
+	return 0;
+}
+
+
